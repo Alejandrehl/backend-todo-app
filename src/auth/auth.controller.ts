@@ -12,7 +12,7 @@ import {
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('/login')
+  @Post()
   async login(@Req() request, @Res() response) {
     const { email, password } = request.body;
 
