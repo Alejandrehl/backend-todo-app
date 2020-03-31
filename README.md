@@ -1,3 +1,8 @@
+## Entities / Models
+
+1. User
+2. Task
+
 ## APIs
 
 ### Register & Login will return JWT
