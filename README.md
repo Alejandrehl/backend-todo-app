@@ -1,5 +1,7 @@
 ## APIs
 
+### Register & Login will return JWT
+
 1. Register:
 
    - METHOD: POST
