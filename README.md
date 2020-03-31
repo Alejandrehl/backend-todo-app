@@ -20,8 +20,8 @@
      - email: string
      - password: string
 
-### Load User should get jwt through url parameters
+### Load user should get jwt through url parameters
 
-3. Load User:
+3. Load user:
    - METHOD: GET
    - ROUTE: `/auth/:token`
