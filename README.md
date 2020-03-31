@@ -19,3 +19,9 @@
    - BODY:
      - email: string
      - password: string
+
+### Load User should get jwt through url parameters
+
+3. Load User:
+   - METHOD: GET
+   - ROUTE: `/auth/:token`

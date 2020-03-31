@@ -17,7 +17,11 @@ export class AuthService {
 
     if (!match) return null;
 
-    const { password, isActive, ...result } = user;
+    const { password, ...result } = user;
     return this.jwtService.sign(result);
+  }
+
+  async validateToken(token: string): Promise<any> {
+    return await jwtDecode(token);
   }
 }

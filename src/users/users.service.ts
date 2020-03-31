@@ -30,7 +30,7 @@ export class UsersService {
       .then(hash => (user.password = hash));
 
     const savedUser = await this.userRepository.save(user);
-    const { password, isActive, ...result } = savedUser;
+    const { password, ...result } = savedUser;
 
     return this.jwtService.sign(result);
   }
