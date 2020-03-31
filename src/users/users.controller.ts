@@ -7,10 +7,10 @@ export class UsersController {
   constructor(private usersServices: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto, @Res() response) {
+  register(@Body() createUserDto: CreateUserDto, @Res() response) {
     this.usersServices
-      .createUser(createUserDto)
-      .then(res => response.status(HttpStatus.CREATED).json(res))
+      .register(createUserDto)
+      .then(token => response.status(HttpStatus.CREATED).json(token))
       .catch(err =>
         response.status(HttpStatus.FORBIDDEN).json({ message: err.message }),
       );

@@ -4,19 +4,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
   async findOne(email: string): Promise<User> {
     return this.userRepository.findOne({ email });
   }
 
-  async createUser(newUser: CreateUserDto): Promise<User> {
+  async register(newUser: CreateUserDto): Promise<any> {
     const user = new User();
 
     user.name = newUser.name;
@@ -27,6 +29,9 @@ export class UsersService {
       .hash(newUser.password, 10)
       .then(hash => (user.password = hash));
 
-    return await this.userRepository.save(user);
+    const savedUser = await this.userRepository.save(user);
+    const { password, isActive, ...result } = savedUser;
+
+    return this.jwtService.sign(result);
   }
 }
