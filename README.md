@@ -28,5 +28,14 @@
 ### Load user should get jwt through url parameters
 
 3. Load user:
+
    - METHOD: GET
    - ROUTE: `/auth/:token`
+
+4. Create Task:
+   - METHOD: POST
+   - ROUTE: `/tasks`
+   - BODY:
+     - userId: number
+     - title: string
+     - description: string
