@@ -18,6 +18,10 @@ export class UsersService {
     return this.userRepository.findOne({ email });
   }
 
+  async findById(id: number): Promise<User> {
+    return this.userRepository.findOne(id);
+  }
+
   async register(newUser: CreateUserDto): Promise<any> {
     const user = new User();
 
