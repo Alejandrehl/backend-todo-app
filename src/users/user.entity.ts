@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Index,
+  OneToMany,
+} from 'typeorm';
+import { Task } from '../tasks/task.entity';
 
 @Entity()
 export class User {
@@ -20,4 +27,10 @@ export class User {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(
+    type => Task,
+    task => task.user,
+  )
+  tasks: Task[];
 }
