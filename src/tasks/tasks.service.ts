@@ -14,7 +14,14 @@ export class TasksService {
   ) {}
 
   async create(newTask: CreateTaskDto): Promise<Task> {
-    console.log(newTask);
-    return;
+    const user = await this.usersService.findById(newTask.userId);
+    if (!user) return null;
+
+    const task = new Task();
+    task.user = user;
+    task.title = newTask.title;
+    task.description = newTask.description;
+
+    return await this.taskRepository.save(task);
   }
 }

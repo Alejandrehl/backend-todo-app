@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   async findById(id: number): Promise<User> {
-    return this.userRepository.findOne(id);
+    return this.userRepository.findOne({ id });
   }
 
   async register(newUser: CreateUserDto): Promise<any> {
