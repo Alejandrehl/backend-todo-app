@@ -26,7 +26,7 @@ export class TasksService {
   }
 
   async findById(id: number): Promise<Task> {
-    return this.taskRepository.findOne({ id });
+    return this.taskRepository.findOne(id);
   }
 
   async findByUserId(userId: number): Promise<Task[]> {
@@ -38,5 +38,15 @@ export class TasksService {
     const res = await this.taskRepository.delete(id);
     if (res.affected > 0) return { message: 'Task deleted', id };
     return null;
+  }
+
+  async update(id: number, updateTask: CreateTaskDto): Promise<Task> {
+    const task = await this.taskRepository.findOne(id);
+    if (!updateTask.title && !updateTask.description) return task;
+
+    if (updateTask.title) task.title = updateTask.title;
+    if (updateTask.description) task.description = updateTask.description;
+
+    return await this.taskRepository.save(task);
   }
 }

@@ -10,6 +10,7 @@ import {
   Param,
   Delete,
   NotFoundException,
+  Put,
 } from '@nestjs/common';
 
 @Controller('tasks')
@@ -54,6 +55,20 @@ export class TasksController {
         if (!res) throw new NotFoundException();
         response.status(HttpStatus.OK).json(res);
       })
+      .catch(err =>
+        response.status(HttpStatus.FORBIDDEN).json({ message: err.message }),
+      );
+  }
+
+  @Put(':id')
+  update(
+    @Body() updateTaskDto: CreateTaskDto,
+    @Res() response,
+    @Param('id') id,
+  ) {
+    this.tasksService
+      .update(id, updateTaskDto)
+      .then(res => response.status(HttpStatus.OK).json(res))
       .catch(err =>
         response.status(HttpStatus.FORBIDDEN).json({ message: err.message }),
       );
