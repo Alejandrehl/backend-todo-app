@@ -42,5 +42,10 @@
      - description: string
 
 5. Get all task by userId:
+
    - METHOD: GET
    - ROUTE: `/tasks/user/:userId`
+
+6. Get Task By Id;
+   - METHOD: GET
+   - ROUTE: `/tasks/:id`
