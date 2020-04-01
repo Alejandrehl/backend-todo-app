@@ -52,5 +52,13 @@
    - ROUTE: `/tasks/:id`
 
 7. Delete Task By Id:
+
    - METHOD: DELETE
    - ROUTE: `/tasks/:id`
+
+8. Update Task By Id:
+   - METHOD: PUT
+   - ROUTE: `/tasks/:id`
+   - BODY:
+     - title: string
+     - description: string
