@@ -33,9 +33,14 @@
    - ROUTE: `/auth/:token`
 
 4. Create Task:
+
    - METHOD: POST
    - ROUTE: `/tasks`
    - BODY:
      - userId: number
      - title: string
      - description: string
+
+5. Get all task by userId:
+   - METHOD: GET
+   - ROUTE: `/tasks/user/:userId`
