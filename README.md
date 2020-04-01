@@ -47,5 +47,10 @@
    - ROUTE: `/tasks/user/:userId`
 
 6. Get Task By Id;
+
    - METHOD: GET
+   - ROUTE: `/tasks/:id`
+
+7. Delete Task By Id;
+   - METHOD: DELETE
    - ROUTE: `/tasks/:id`
