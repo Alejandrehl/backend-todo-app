@@ -33,4 +33,14 @@ export class TasksController {
         response.status(HttpStatus.BAD_GATEWAY).json({ message: err.message }),
       );
   }
+
+  @Get('/:id')
+  findById(@Param('id') id, @Res() response) {
+    this.tasksService
+      .findById(id)
+      .then(task => response.status(HttpStatus.OK).json(task))
+      .catch(err =>
+        response.status(HttpStatus.BAD_GATEWAY).json({ message: err.message }),
+      );
+  }
 }
