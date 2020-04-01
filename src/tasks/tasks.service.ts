@@ -33,4 +33,10 @@ export class TasksService {
     const user = await this.usersService.findById(userId);
     return await this.taskRepository.find({ where: { user } });
   }
+
+  async delete(id: number): Promise<any> {
+    const res = await this.taskRepository.delete(id);
+    if (res.affected > 0) return { message: 'Task deleted', id };
+    return null;
+  }
 }

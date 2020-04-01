@@ -8,6 +8,8 @@ import {
   HttpStatus,
   Get,
   Param,
+  Delete,
+  NotFoundException,
 } from '@nestjs/common';
 
 @Controller('tasks')
@@ -41,6 +43,19 @@ export class TasksController {
       .then(task => response.status(HttpStatus.OK).json(task))
       .catch(err =>
         response.status(HttpStatus.BAD_GATEWAY).json({ message: err.message }),
+      );
+  }
+
+  @Delete('/:id')
+  delete(@Res() response, @Param('id') id) {
+    this.tasksService
+      .delete(id)
+      .then(res => {
+        if (!res) throw new NotFoundException();
+        response.status(HttpStatus.OK).json(res);
+      })
+      .catch(err =>
+        response.status(HttpStatus.FORBIDDEN).json({ message: err.message }),
       );
   }
 }
