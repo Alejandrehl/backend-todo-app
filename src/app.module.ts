@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { TasksModule } from './tasks/tasks.module';
 import { ConfigModule } from '@nestjs/config';
 
-console.log('AQUI', process.env);
 @Module({
   imports: [
     ConfigModule.forRoot(),
